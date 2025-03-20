@@ -1,0 +1,10 @@
+{
+    "title": "Scaling Blockchains to Support Electronic Health Records for Hospital Systems",
+    "authors": [
+        "Alyssa Donawa",
+        "Inema Orukari",
+        "Corey E. Baker"
+    ],
+    "summary": "Electronic Health Records (EHRs) have improved many aspects of healthcare and\nallowed for easier patient management for medical providers. Blockchains have\nbeen proposed as a promising solution for supporting Electronic Health Records\n(EHRs), but have also been linked to scalability concerns about supporting\nreal-world healthcare systems. This paper quantifies the scalability issues and\nbottlenecks related to current blockchains and puts into perspective the\nlimitations blockchains have with supporting healthcare systems. Particularly\nwe show that well known blockchains such as Bitcoin, Ethereum, and IOTA cannot\nsupport transactions of a large scale hospital system such as the University of\nKentucky HealthCare system and leave over 7.5M unsealed transactions per day.\nWe then discuss how bottlenecks of blockchains can be relieved with sidechains,\nenabling well-known blockchains to support even larger hospital systems of over\n30M transactions per day. We then introduce the Patient-Healthchain\narchitecture to provide future direction on how scaling blockchains for EHR\nsystems with sidechains can be achieved.",
+    "pdf_url": "http://arxiv.org/pdf/2001.05525v3"
+}

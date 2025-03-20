@@ -1,0 +1,8 @@
+{
+    "title": "Does an artificial intelligence perform market manipulation with its own discretion? -- A genetic algorithm learns in an artificial market simulation",
+    "authors": [
+        "Takanobu Mizuta"
+    ],
+    "summary": "Who should be charged with responsibility for an artificial intelligence\nperforming market manipulation have been discussed. In this study, I\nconstructed an artificial intelligence using a genetic algorithm that learns in\nan artificial market simulation, and investigated whether the artificial\nintelligence discovers market manipulation through learning with an artificial\nmarket simulation despite a builder of artificial intelligence has no intention\nof market manipulation. As a result, the artificial intelligence discovered\nmarket manipulation as an optimal investment strategy. This result suggests\nnecessity of regulation, such as obligating builders of artificial intelligence\nto prevent artificial intelligence from performing market manipulation.",
+    "pdf_url": "http://arxiv.org/pdf/2005.10488v1"
+}

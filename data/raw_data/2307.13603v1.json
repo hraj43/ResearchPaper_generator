@@ -1,0 +1,11 @@
+{
+    "title": "Blockchain inspired secure and reliable data exchange architecture for cyber-physical healthcare system 4.0",
+    "authors": [
+        "Mohit Kumar",
+        "Hritu Raj",
+        "Nisha Chaurasia",
+        "Sukhpal Singh Gill"
+    ],
+    "summary": "A cyber-physical system is considered to be a collection of strongly coupled\ncommunication systems and devices that poses numerous security trials in\nvarious industrial applications including healthcare. The security and privacy\nof patient data is still a big concern because healthcare data is sensitive and\nvaluable, and it is most targeted over the internet. Moreover, from the\nindustrial perspective, the cyber-physical system plays a crucial role in the\nexchange of data remotely using sensor nodes in distributed environments. In\nthe healthcare industry, Blockchain technology offers a promising solution to\nresolve most securities-related issues due to its decentralized, immutability,\nand transparency properties. In this paper, a blockchain-inspired secure and\nreliable data exchange architecture is proposed in the cyber-physical\nhealthcare industry 4.0. The proposed system uses the BigchainDB, Tendermint,\nInter-Planetary-File-System (IPFS), MongoDB, and AES encryption algorithms to\nimprove Healthcare 4.0. Furthermore, blockchain-enabled secure healthcare\narchitecture for accessing and managing the records between Doctors and\nPatients is introduced. The development of a blockchain-based Electronic\nHealthcare Record (EHR) exchange system is purely patient-centric, which means\nthe entire control of data is in the owner's hand which is backed by blockchain\nfor security and privacy. Our experimental results reveal that the proposed\narchitecture is robust to handle more security attacks and can recover the data\nif 2/3 of nodes are failed. The proposed model is patient-centric, and control\nof data is in the patient's hand to enhance security and privacy, even system\nadministrators can't access data without user permission.",
+    "pdf_url": "http://arxiv.org/pdf/2307.13603v1"
+}

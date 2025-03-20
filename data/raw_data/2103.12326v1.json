@@ -1,0 +1,11 @@
+{
+    "title": "Security of Healthcare Data Using Blockchains: A Survey",
+    "authors": [
+        "Mayank Pandey",
+        "Rachit Agarwal",
+        "Sandeep K. Shukla",
+        "Nishchal K. Verma"
+    ],
+    "summary": "The advancement in the healthcare sector is entering into a new era in the\nform of Health 4.0. The integration of innovative technologies like\nCyber-Physical Systems (CPS), Big Data, Cloud Computing, Machine Learning, and\nBlockchain with Healthcare services has led to improved performance and\nefficiency through data-based learning and interconnection of systems. On the\nother hand, it has also increased complexities and has brought its own share of\nvulnerabilities due to the heavy influx, sharing, and storage of healthcare\ndata. The protection of the same from cyber-attacks along with privacy\npreservation through authenticated access is one of the significant challenges\nfor the healthcare sector. For this purpose, the use of blockchain-based\nnetworks can lead to a considerable reduction in the vulnerabilities of the\nhealthcare systems and secure their data. This chapter explores blockchain's\nrole in strengthening healthcare data security by answering the questions\nrelated to what data use, when we need, why we need, who needs, and how\nstate-of-the-art techniques use blockchains to secure healthcare data. As a\ncase study, we also explore and analyze the state-of-the-art implementations\nfor blockchain in healthcare data security for the COVID-19 pandemic. In order\nto provide a path to future research directions, we identify and discuss the\ntechnical limitations and regulatory challenges associated with\nblockchain-based healthcare data security implementation.",
+    "pdf_url": "http://arxiv.org/pdf/2103.12326v1"
+}

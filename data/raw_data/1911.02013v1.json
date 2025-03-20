@@ -1,0 +1,12 @@
+{
+    "title": "A Survey of Blockchain Applications in Different Domains",
+    "authors": [
+        "Wubing Chen",
+        "Zhiying Xu",
+        "Shuyu Shi",
+        "Yang Zhao",
+        "Jun Zhao"
+    ],
+    "summary": "Blockchains have received much attention recently since they provide\ndecentralized approaches to the creation and management of value. Many banks,\nInternet companies, car manufacturers, and even governments worldwide have\nincorporated or started considering blockchains to improve the security,\nscalability, and efficiency of their services. In this paper, we survey\nblockchain applications in different areas. These areas include cryptocurrency,\nhealthcare, advertising, insurance, copyright protection, energy, and societal\napplications. Our work provides a timely summary for individuals and\norganizations interested in blockchains. We envision our study to motivate more\nblockchain applications.",
+    "pdf_url": "http://arxiv.org/pdf/1911.02013v1"
+}

@@ -1,0 +1,11 @@
+{
+    "title": "Applications of Blockchain in Healthcare: Current Landscape & Challenges",
+    "authors": [
+        "Gajendra J. Katuwal",
+        "Sandip Pandey",
+        "Mark Hennessey",
+        "Bishal Lamichhane"
+    ],
+    "summary": "Several problems in healthcare stem from the complex network of\nintermediaries and the lack of traceability of transactions. To mention a few:\nhealthcare data is fragmented across several silos negatively affecting\nresearch and services, about half of the clinical trials are never reported,\nthe cost of drug discovery is ever increasing, and substandard and fake\nmedicines are still a huge problem. Blockchain has the potential to solve these\nproblems as it provides trust without any intermediaries, has traceability as a\ndefault feature, and promises new business models by enabling novel incentive\nstructures. Due to its potential, blockchain has gathered significant interest\nin the healthcare industry. In this paper, we review major use cases of\nblockchain in healthcare: patient data management, pharmaceutical research,\nsupply chain management of medical goods, prescription management, billing\nclaims management, analytics, and telemedicine alongside the related projects.\nWe found that most of the blockchain projects are limited as white-papers,\nproof of concepts, and products with a limited user base. However, we observed\nthat the quantity, quality, and maturity of the projects are increasing. We\nalso discuss technical, regulatory, and business challenges to the adoption of\nblockchain in the healthcare industry",
+    "pdf_url": "http://arxiv.org/pdf/1812.02776v1"
+}

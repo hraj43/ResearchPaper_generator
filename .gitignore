@@ -1,1 +1,25 @@
-venv
+# Virtual environment
+venv/
+.venv/
+env/
+
+# Python bytecode
+__pycache__/
+*.py[cod]
+
+# Environment files
+.env
+
+# Downloaded PDFs
+*.pdf
+
+# Logs and databases
+*.log
+*.sqlite3
+
+# IDE settings
+.vscode/
+.idea/
+
+# Miscellaneous
+.DS_Store

@@ -2,6 +2,7 @@ import os
 from dotenv import load_dotenv
 import asyncio
 import time
+import streamlit as st
 
 import nest_asyncio
 from llama_index.llms.openai import OpenAI
@@ -67,19 +68,27 @@ async def generate_outline_from_query(query, llm):
     
     return outline
 
-async def initialize_research_pipeline(query, model="gpt-3.5-turbo", max_retries=3):
+async def initialize_research_pipeline(query, pdf, model="gpt-3.5-turbo", max_retries=1, custom_outline=None):
     """
     Initialize the research pipeline and generate report based on a query.
     
     Args:
         query (str): Research topic query to generate an outline from.
+        pdf (list): List of PDF file objects to process.
         model (str, optional): OpenAI model to use. Defaults to "gpt-3.5-turbo".
-        max_retries (int, optional): Maximum number of retries for generation. Defaults to 3.
-    
+        max_retries (int, optional): Maximum number of retries for generation. Defaults to 1.
+        custom_outline (str, optional): Custom outline to use instead of generating a new one.
+        
     Returns:
         dict: Generated report
     """
     # Check for API keys
+    if not pdf or len(pdf) == 0:
+        return {
+            "response": "Error: No PDF documents were provided for analysis.",
+            "outline": f"# Research Paper Report on {query}\n\n## Error\nNo source documents were available for analysis.",
+            "success": False
+        }
     openai_api_key = os.getenv("OPENAI_API_KEY")
     llama_cloud_api_key = os.getenv("LLAMA_CLOUD_API_KEY")
     
@@ -94,23 +103,14 @@ async def initialize_research_pipeline(query, model="gpt-3.5-turbo", max_retries
         max_tokens=4000  # Ensure sufficient tokens for complete generation
     )
     
-    # Generate outline from query
-    print(f"Generating outline based on query: '{query}'")
-    outline = await generate_outline_from_query(query, llm)
-    print("Generated outline:")
-    print(outline)
-    print("\n")
-
-
-    # Download research papers
-    downloaded_papers = download_papers(RESEARCH_PAPER_TOPICS, NUM_RESULTS_PER_TOPIC)
-    pdf_files = list_pdf_files()
-    print(f"Found {len(pdf_files)} PDF files")
+    # Generate outline from query or use the provided custom outline
+    if custom_outline:
+        outline = custom_outline
+    else:
+        outline = await generate_outline_from_query(query, llm)
 
     # Parse documents
-    print("Parsing PDF files...")
-    documents = parse_pdf_files(pdf_files)
-    print(f"Parsed {len(documents)} documents")
+    documents = parse_pdf_files(pdf)
 
     # Embedding and transformation configurations
     embedding_config = {
@@ -130,15 +130,12 @@ async def initialize_research_pipeline(query, model="gpt-3.5-turbo", max_retries
     }
 
     # Create LlamaCloud pipeline
-    print("Creating LlamaCloud pipeline...")
     client, pipeline = create_llamacloud_pipeline('report_generation', embedding_config, transform_config)
 
     # Upload documents
-    print("Uploading documents to LlamaCloud...")
     await upload_documents(client, pipeline, documents, llm)
 
     # Create query engine
-    print("Creating query engine...")
     query_engine = create_query_engine(llama_cloud_api_key)
 
     # Process the outline into sections for potential section-by-section generation
@@ -155,7 +152,6 @@ async def initialize_research_pipeline(query, model="gpt-3.5-turbo", max_retries
     # Attempt generation with retries
     for attempt in range(max_retries):
         try:
-            print(f"Generating report (Attempt {attempt+1}/{max_retries})...")
             report = await agent.run(outline=outline)
             
             # Verify we have a complete report by checking for conclusion
@@ -166,11 +162,9 @@ async def initialize_research_pipeline(query, model="gpt-3.5-turbo", max_retries
                     "success": True
                 }
             else:
-                print("Warning: Generated report appears incomplete. Retrying...")
                 # Short delay before retry
                 time.sleep(5) 
         except Exception as e:
-            print(f"Error in generation attempt {attempt+1}: {str(e)}")
             if attempt < max_retries - 1:
                 print("Retrying...")
                 time.sleep(10)  # Wait longer after an error
@@ -178,7 +172,6 @@ async def initialize_research_pipeline(query, model="gpt-3.5-turbo", max_retries
                 raise
     
     # If we reach here without returning, try fallback to section-by-section generation
-    print("Attempting fallback to section-by-section generation...")
     full_report = await generate_report_by_sections(agent, sections)
     return {
         "response": full_report,
@@ -228,7 +221,6 @@ async def generate_report_by_sections(agent, sections):
                 section_content = extract_section_content(section_result['response'])
                 full_report.append(section_content)
         except Exception as e:
-            print(f"Error generating section {i}: {str(e)}")
             # Add placeholder if section generation fails
             full_report.append(f"\n## {section_outline.strip().split()[1]}\n\nContent generation incomplete for this section.\n")
     
@@ -256,9 +248,6 @@ if __name__ == "__main__":
         # Get query from user input
         user_query = input("Enter your research topic query (e.g., 'quantum computing applications in cybersecurity'): ")
         
-        print(f"Generating research paper on: {user_query}")
-        print(f"Using model: {model_to_use}")
-        
         report = asyncio.run(initialize_research_pipeline(query=user_query, model=model_to_use))
         
         if report and 'response' in report and report['response']:
@@ -267,7 +256,6 @@ if __name__ == "__main__":
             # Check report completeness
             content = report['response']
             sections_found = content.count('##')
-            print(f"Found {sections_found} major sections in the report")
             
             # Save to file
             with open("research_paper.md", "w", encoding="utf-8") as f:
@@ -275,7 +263,6 @@ if __name__ == "__main__":
             print("Report saved to research_paper.md")
             
             # Preview the report structure
-            print("\nReport Structure Preview:")
             lines = content.split('\n')
             for line in lines:
                 if line.startswith('#'):

@@ -89,15 +89,16 @@ class ReportGenerationAgent(Workflow):
     def log(self, message):
         """Print debug messages if verbose mode is enabled"""
         if self.debug:
-            print(f"[ReportAgent] {message}")
+            pass
+            # print(f"[ReportAgent] {message}")
 
     def format_report(self, section_contents, title, outline):
         """Format the report based on the section contents."""
         # Extract structure from outline
         sections = self._parse_outline_structure(outline)
         
-        self.log(f"Formatting report with title: {title}")
-        self.log(f"Found {len(sections)} sections in outline")
+        # self.log(f"Formatting report with title: {title}")
+        # self.log(f"Found {len(sections)} sections in outline")
         
         # Start with the title
         report = f"# {title}\n\n"
@@ -108,19 +109,19 @@ class ReportGenerationAgent(Workflow):
             section_title = section_info['title']
             section_key = f"{section_num} {section_title}"
             
-            self.log(f"Processing section: {section_key}")
+            # self.log(f"Processing section: {section_key}")
             
             # Check if this is an introduction or conclusion section
             is_intro = "introduction" in section_title.lower()
             is_conclusion = "conclusion" in section_title.lower()
             
             if is_intro:
-                self.log("Generating introduction")
+                # self.log("Generating introduction")
                 # Generate introduction based on overall report content
                 intro_content = self._generate_introduction(title, section_contents)
                 report += f"## {section_num} {section_title}\n\n{intro_content}\n\n"
             elif is_conclusion:
-                self.log("Generating conclusion")
+                # self.log("Generating conclusion")
                 # Generate conclusion based on overall report content
                 conclusion_content = self._generate_conclusion(title, section_contents)
                 report += f"## {section_num} {section_title}\n\n{conclusion_content}\n\n"
@@ -141,19 +142,19 @@ class ReportGenerationAgent(Workflow):
                         subsection_title = subsection['title']
                         subsection_key = f"{subsection_num} {subsection_title}"
                         
-                        self.log(f"  Processing subsection: {subsection_key}")
+                        # self.log(f"  Processing subsection: {subsection_key}")
                         
                         # Add content if available
                         if subsection_key in section_contents[section_key]:
                             content = section_contents[section_key][subsection_key]
                             report += f"### {subsection_num} {subsection_title}\n\n{content}\n\n"
                         else:
-                            self.log(f"  Warning: No content for subsection {subsection_key}")
+                            # self.log(f"  Warning: No content for subsection {subsection_key}")
                             # Generate placeholder content
                             placeholder = self._generate_placeholder_content(title, section_title, subsection_title)
                             report += f"### {subsection_num} {subsection_title}\n\n{placeholder}\n\n"
                 else:
-                    self.log(f"Warning: No content for section {section_key}")
+                    # self.log(f"Warning: No content for section {section_key}")
                     # Generate placeholder
                     placeholder = self._generate_placeholder_content(title, section_title, "")
                     report += f"## {section_num} {section_title}\n\n{placeholder}\n\n"
